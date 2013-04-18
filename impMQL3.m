@@ -1,7 +1,7 @@
 % skrypt do importu sygna³ów z MQL
 clear MQL
 
-fid=fopen('EURUSD60_03.csv');
+fid=fopen('USDJPY60_03.csv');
 % Read header line
 header=textscan(fid,'%*s %*s %*s %s %s %s %s %s %s %s %s',1,'Delimiter',';','CollectOutput',1); 
 data = textscan(fid,'%u %u %u %f %f %f %f %f %f %f %f','HeaderLines',1,'Delimiter',';','CollectOutput',1);

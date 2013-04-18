@@ -1,4 +1,4 @@
-B = cross3a(MQL, 6700, 6);
+B = cross3y(MQL, 6700, 6);
 ind = find(B(:,1));
 b = B(ind,:);
 

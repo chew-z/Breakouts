@@ -1,7 +1,8 @@
-function B = cross3(MQL, N, M)
+function B = cross3a(MQL, N, M)
 % cross3 - analizuje breakouty i fady
 % jeśli nastąpiło przebicie L/H, to w ciągu M barów
 % jaki był zakres ruchu do góry a jaki w dół [w pipsach]
+% 
 
 if nargin < 3; M = 23; end
 if nargin < 2; N = length(MQL)-1; end
@@ -18,15 +19,15 @@ for i = 1:length(OHLC) - M
 		[mn, in] = min(OHLC(i+1:i+M,3));
 		[mx, ix] = max(OHLC(i+1:i+M,2));
 		B(i, 1) = -1; 
-		B(i, 2) = (mn - L) * 10000; % trend move
-		B(i, 3) = (L - mx) * 10000; % back move
+		B(i, 2) = (mn - L) * 10000; % trend move (dodatnie)
+		B(i, 3) = (mx - L) * 10000; % back move (powyżej L = dodatnie)
 	end
 	% breakout H
 	if OHLC(i, 1) < H & OHLC(i, 4) > H
 		[mn, in] = min(OHLC(i+1:i+M,3));
 		[mx, ix] = max(OHLC(i+1:i+M,2));
 		B(i, 1) = 1; 
-		B(i, 2) = (mx - H) * 10000; % trend move
-		B(i, 3) = (H - mn) * 10000; % back move
+		B(i, 2) = (mx - H) * 10000; % trend move (dodatnie)
+		B(i, 3) = (H - mn) * 10000; % back move (poniżej H = dodatnie)
 	end 
 end
